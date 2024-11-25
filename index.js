@@ -2630,3 +2630,22 @@ for(var y = 0; y < 1024; y+=64) {
 // var print = function(o) {console.log(JSON.stringify(o));};
 // }
 /**************************************************************/
+function disableZoom() {
+    let meta = document.querySelector('meta[name="viewport"]');
+    if (!meta) {
+        meta = document.createElement('meta');
+        meta.name = "viewport";
+        document.head.appendChild(meta);
+    }
+    meta.content = "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
+}
+
+disableZoom();
+
+document.addEventListener('keydown', (event) => {
+    if ((event.ctrlKey || event.metaKey) && (event.key === '+' || event.key === '-')) {
+        event.preventDefault();
+    }
+});
+
+
